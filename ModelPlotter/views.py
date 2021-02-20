@@ -4,7 +4,7 @@ from django.urls import reverse
 
 # Create your views here.
 from .models import Optics, Types, Stages, DOFs
-from lib.plotter import *
+from lib.plotter import zpkload, plotzpk, plotTFdata
 import matplotlib.pyplot as plt
 import os
 from .forms import UploadFileForm
@@ -12,11 +12,15 @@ from VISapp.settings import BASE_DIR
 
 
 def index(request):
+    '''
+    '''
     optics_list = Optics.objects.all()
     form = UploadFileForm()
     return render(request, 'ModelPlotter/index.html',{'optic_list': optics_list,'form':form})
 
 def plot_model(request):
+    '''
+    '''
     optics_list = Optics.objects.all()
     form = UploadFileForm()
 
